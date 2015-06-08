@@ -1,10 +1,14 @@
 {
   "name": "metalsmith-highlight",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "description": "Metalsmith plugin for syntax highlight",
   "main": "index.js",
   "scripts": {
     "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hbsnow/metalsmith-highlight.git"
   },
   "keywords": [
     "metalsmith",
@@ -12,7 +16,11 @@
   ],
   "author": "hbsnow",
   "license": "ISC",
-  "devDependencies": {
+  "bugs": {
+    "url": "https://github.com/hbsnow/metalsmith-highlight/issues"
+  },
+  "homepage": "https://github.com/hbsnow/metalsmith-highlight",
+  "dependencies": {
     "domino": "^1.0.18",
     "highlight.js": "^8.6.0"
   }
