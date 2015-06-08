@@ -1,0 +1,19 @@
+{
+  "name": "metalsmith-highlight",
+  "version": "0.0.0",
+  "description": "Metalsmith plugin for syntax highlight",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "metalsmith",
+    "highlight"
+  ],
+  "author": "hbsnow",
+  "license": "ISC",
+  "devDependencies": {
+    "domino": "^1.0.18",
+    "highlight.js": "^8.6.0"
+  }
+}
