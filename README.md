@@ -7,4 +7,29 @@
 - コードの指定がない場合の推測をしない
 - class名で`lang(uage)?-*`によって種類を指定する
 
-のがちょっと違うところ。
+のがちょっと違うところ。metalsmith-asciiで変換したHTMLに適用したかった。
+
+### Install
+
+[![NPM](https://nodei.co/npm/metalsmith-highlight.png)](https://nodei.co/npm/metalsmith-highlight/)
+
+### Usage
+
+```js
+var Metalsmith = require('metalsmith');
+var highlight = require('metalsmith-highlight');
+
+var metalsmith = new Metalsmith(__dirname);
+metalsmith
+  .use(highlight({
+    tabReplace: '  ',
+    classPrefix: 'hljs-'
+  }))
+  .build()
+```
+
+[highlight.jsのOption](http://highlightjs.readthedocs.org/en/latest/api.html#configure-options)を指定できます。
+
+### License
+
+ISC
