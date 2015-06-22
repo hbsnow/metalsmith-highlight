@@ -1,5 +1,5 @@
 var domino = require('domino');
-var highlight = require('highlight.js');
+var Prism = require('./lib/prism');
 
 /**
  * @param {!HTMLElement} element
@@ -32,6 +32,60 @@ var getDocType = function(html) {
 };
 
 /**
+ * @param {string} lang
+ * @return {?string} Null if not found
+ */
+var getGrammar = function(lang) {
+  if (!lang) {
+    return null;
+  }
+
+  var langList = [
+    'markup', 'css', 'clike', 'javascript', 'actionscript', 'apacheconf',
+    'applescript', 'aspnet', 'autohotkey', 'bash', 'c', 'csharp', 'cpp',
+    'coffeescript', 'css-extras', 'dart', 'eiffel', 'erlang', 'fsharp',
+    'fortran', 'gherkin', 'git', 'go', 'groovy', 'haml', 'handlebars',
+    'haskell', 'http', 'ini', 'jade', 'java', 'julia', 'latex', 'less',
+    'lolcode', 'markdown', 'matlab', 'nasm', 'nsis', 'objectivec', 'pascal',
+    'perl', 'php', 'php-extras', 'powershell', 'python', 'r', 'jsx', 'rest',
+    'rip', 'ruby', 'rust', 'sas', 'sass', 'scss', 'scala', 'scheme',
+    'smalltalk', 'smarty', 'sql', 'stylus', 'swift', 'twig', 'typescript',
+    'vhdl', 'wiki', 'yaml', 'asciidoc'
+  ];
+
+  if(langList.indexOf(lang) >= 0) {
+    return Prism.languages[lang];
+  } else {
+    // alias
+    switch(lang) {
+      case 'adoc':
+        return Prism.languages.asciidoc;
+      case 'coffee':
+        return Prism.languages.coffeescript;
+      case 'cs':
+        return Prism.languages.csharp;
+      case 'hs':
+        return Prism.languages.haskell;
+      case 'js':
+        return Prism.languages.javascript;
+      case 'md':
+        return Prism.languages.markdown;
+      case 'ps1':
+        return Prism.languages.powershell;
+      case 'py':
+        return Prism.languages.python;
+      case 'ts':
+        return Prism.languages.typescript;
+      case 'yml':
+        return Prism.languages.yaml;
+    }
+  }
+
+  return null;
+};
+
+
+/**
  * @param {!string} html
  * @return {!string} New HTML with code highlighted
  */
@@ -51,11 +105,11 @@ var highlightFile = function(html) {
   var len;
   for(var i = 0, len = codeBlocks.length; i < len; i++) {
     var codeBlock = codeBlocks[i];
-    var lang = getLanguage(codeBlock);
+    var grammar = getGrammar(getLanguage(codeBlock));
 
-    if(highlight.getLanguage(lang)) {
-      var result = highlight.highlight(lang, codeBlock.textContent, true);
-      codeBlock.innerHTML = result.value;
+    if(grammar) {
+      var result = Prism.highlight(codeBlock.textContent, grammar);
+      codeBlock.innerHTML = result;
     }
   }
 
@@ -69,9 +123,7 @@ var highlightFile = function(html) {
   return finalHtml;
 };
 
-module.exports = function(options) {
-  highlight.configure(options);
-
+module.exports = function() {
   /**
    * @param {Object} files
    * @param {Metalsmith} metalsmith

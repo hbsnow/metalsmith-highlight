@@ -2,12 +2,7 @@
 
 [![Build Status](https://travis-ci.org/hbsnow/metalsmith-highlight.svg?branch=master)](https://travis-ci.org/hbsnow/metalsmith-highlight)
 
-[metalsmith-code-highlight](https://github.com/fortes/metalsmith-code-highlight)を使うとclass名が`language-*`でないと言語の推測をしてしまう問題が発生したので作った。参考につくったのでほとんど内容は同じです。
-
-- コードの指定がない場合の推測をしない
-- class名で`lang(uage)?-*`によって種類を指定する
-
-のがちょっと違うところ。metalsmith-asciiで変換したHTMLに適用したかった。
+[metalsmith-code-highlight](https://github.com/fortes/metalsmith-code-highlight)ではハイライトには[highlight.js](https://highlightjs.org/)が使用されていますが、metalsmith-highlightでは[Prism](https://prismjs.com/)を使用しています。
 
 ### Install
 
@@ -21,14 +16,24 @@ var highlight = require('metalsmith-highlight');
 
 var metalsmith = new Metalsmith(__dirname);
 metalsmith
-  .use(highlight({
-    tabReplace: '  ',
-    classPrefix: 'hljs-'
-  }))
+  .use(highlight())
   .build()
 ```
 
-[highlight.jsのOption](http://highlightjs.readthedocs.org/en/latest/api.html#configure-options)を指定できます。
+対応言語は[Prism](http://prismjs.com/)の一覧にあるすべての言語とAsciiDocです。
+
+- adoc
+- coffee
+- cs
+- hs
+- js
+- md
+- ps1
+- py
+- ts
+- yml
+
+これらにはAliasが設定されているので、`<code class="lang-js">`のように書いてもハイライトされます。
 
 ### License
 

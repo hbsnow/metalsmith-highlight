@@ -1,6 +1,6 @@
 {
   "name": "metalsmith-highlight",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Metalsmith plugin for syntax highlight",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/hbsnow/metalsmith-highlight",
   "dependencies": {
-    "domino": "^1.0.18",
-    "highlight.js": "^8.6.0"
+    "domino": "^1.0.18"
   }
 }
