@@ -1,6 +1,6 @@
 {
   "name": "metalsmith-highlight",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Metalsmith plugin for syntax highlight",
   "main": "index.js",
   "scripts": {
