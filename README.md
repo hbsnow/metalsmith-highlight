@@ -32,6 +32,8 @@ metalsmith
 - py
 - ts
 - yml
+- html
+- xml
 
 これらにはAliasが設定されているので、`<code class="lang-js">`のように書いてもハイライトされます。
 
