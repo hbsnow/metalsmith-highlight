@@ -78,6 +78,8 @@ var getGrammar = function(lang) {
         return Prism.languages.typescript;
       case 'yml':
         return Prism.languages.yaml;
+      case 'html', 'xml':
+        return Prism.languages.markup;
     }
   }
 
